@@ -23,13 +23,13 @@ We are to look for the following files within the target machine:
     v2Vb
     X1Uy
 
-![](img1.jpg)
+![](img/img1.jpg)
 
 1. First we gonna ssh into the target machine with the credentials *user:new-user pass:new-user*
 ```bash
 ssh new-user@target-ip
 ```
-![](img2.jpg)
+![](img/img2.jpg)
 
 2. First we can create an array of the files.
 ```bash
@@ -39,13 +39,13 @@ You can check the created array using:
 ```bash
 echo $files
 ```
-![](img3.jpg)
+![](img/img3.jpg)
 
 3. Now you can loop through this array and find their locations
 ```bash
 for i in $files;do find / -type f -name $i 2>/dev/null;done
 ```
-![](img4.jpg)
+![](img/img4.jpg)
 *You can see the second file( "bny0" ) is not available in the filesystem*
 
 4. First question:
@@ -56,7 +56,7 @@ We can find the owners of each file
 ```bash
 for i in $files;do ls -la $(find / -type f -name $i 2>/dev/null);done
 ```
-![](img5.jpg)
+![](img/img5.jpg)
 
 or
 
@@ -78,7 +78,7 @@ We can simply look for the occurences of a number *[0-9]* and then a dot *[\.]*
 ```bash
 for i in $files;do find / -type f -name $i -exec grep -e "[0-9][\.]" {} \; 2>/dev/null;done
 ```
-![](img6.jpg)
+![](img/img6.jpg)
 
 or,
 
@@ -101,7 +101,7 @@ We need to calculate the *sha1sum* of each file and manually look for the matchi
 ```bash
 for i in $files;do find / -type f -name $i -exec sha1sum {} \; 2>/dev/null;done
 ```
-![](img7.jpg)
+![](img/img7.jpg)
 
 
 7. Fourth question
@@ -113,7 +113,7 @@ Let's look for the number of lines in each file
 ```bash
 for i in $files;do find / -type f -name $i -exec wc -l {} \; 2>/dev/null; done
 ```
-![](img8.jpg)
+![](img/img8.jpg)
 
 We can assure that none of the listed files do not have 230 lines. And out of 12 we can find only 11 files in the filesystem. So.. I guess the missing file may be the answer. 
 
@@ -128,7 +128,7 @@ for i in $files;do find / -type f -name $i -exec ls -l {} \; 2>/dev/null;done
 ```
 next you can read the */etc/passwd* file and look for the userId.
 
-![](img9.jpg)
+![](img/img9.jpg)
 
 9. Sixth question
 
@@ -139,7 +139,7 @@ let's check the permissions of all files.
 ```bash
 for i in $files;do find / -type f -name $i -exec ls -l {} \; 2>/dev/null;done
 ```
-![](img10.jpg)
+![](img/img10.jpg)
 We can find only only 1 file have given the executable permission.
 
 10. Summary
