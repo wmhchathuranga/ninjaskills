@@ -41,7 +41,7 @@ echo $files
 ```
 ![](img/img3.jpg)
 
-3. Now you can loop through this array and find their locations
+3. Now you can loop through this array and find their locations,
 ```bash
 for i in $files;do find / -type f -name $i 2>/dev/null;done
 ```
